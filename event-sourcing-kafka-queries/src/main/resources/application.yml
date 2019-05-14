@@ -1,0 +1,23 @@
+server:
+  contextPath: /api
+  port: 8090
+
+spring:
+  kafka:
+    bootstrapServers: localhost:9092
+    consumer:
+      groupId: getting-things-done-query
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: teg.kafka.serialization.ItemEventDeserializer
+      autoOffsetReset: latest
+      enableAutoCommit: false
+      isolationLevel: read_committed
+    listener:
+      ackMode: MANUAL
+
+gtd:
+  topic: topic-getting-things-done
+
+management:
+  security:
+    enabled: false
